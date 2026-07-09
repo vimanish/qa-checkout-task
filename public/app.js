@@ -167,7 +167,6 @@ function renderLogin() {
         <h1>Sample shopper journey.</h1>
         <p>A focused online shopping scenario that can be understood quickly without product training.</p>
         <div class="login-features">
-          <div class="login-feature"><strong>3-5h</strong><span>Focused take-home scope</span></div>
           <div class="login-feature"><strong>UI</strong><span>Realistic browser workflow</span></div>
           <div class="login-feature"><strong>Customer</strong><span>Single shopper account</span></div>
         </div>
@@ -350,13 +349,15 @@ function renderBrief() {
           <header><h2>Output</h2><span>1</span></header>
           <article class="ticket-card output-card" ${testid('candidate-output')}>
             <p>Once testing is complete, collate your feedback. During the interview, talk us through your findings, your test approach and the choices you made.</p>
+            <p>We are interested in your judgement, prioritisation, and ability to explain your approach. We are not expecting complete coverage or a production-ready test framework.</p>
+            <p>AI tooling is permitted. If you use AI, include a short note on where it helped, where you verified or corrected it, and what you chose not to rely on it for.</p>
             <p>You may choose to submit your completed feedback using one of the following options:</p>
             <ol class="submission-list">
               <li>Private GitHub repository</li>
               <li>ZIP file</li>
               <li>A combination of both, if preferred</li>
             </ol>
-            <p class="ps-note">P.S. .zip, word, Excel, PDF, and Markdown documents are acceptable.</p>
+            <p class="ps-note">P.S. .zip, word, excel, pdf and markdown documents are acceptable.</p>
           </article>
         </section>
       </div>

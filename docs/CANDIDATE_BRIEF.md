@@ -54,10 +54,14 @@ Open the deployed staging URL and begin testing the shopper checkout ticket.
 
 Once testing is complete, collate your feedback. During the interview, talk us through your findings, your test approach and the choices you made.
 
+We are interested in your judgement, prioritisation, and ability to explain your approach. We are not expecting complete coverage or a production-ready test framework.
+
+AI tooling is permitted. If you use AI, include a short note on where it helped, where you verified or corrected it, and what you chose not to rely on it for.
+
 You may choose to submit your completed feedback using one of the following options:
 
 1. Private GitHub repository
 2. ZIP file
 3. A combination of both, if preferred
 
-P.S. .zip, word, Excel, PDF, and Markdown documents are acceptable.
+P.S. .zip, word, excel, pdf and markdown documents are acceptable.
