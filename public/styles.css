@@ -467,3 +467,98 @@ h3 { font-size: 14px; }
   font-weight: 1000;
   padding: 5px;
 }
+
+
+/* task_20: responsive polish / overflow hardening
+   These fixes are intentionally not seeded defects. The app should not distract candidates with layout overflow issues. */
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+img, svg, video, canvas { max-width: 100%; }
+*, *::before, *::after { min-width: 0; }
+
+.ticket-board {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .74fr) minmax(0, .78fr);
+}
+.ticket-column, .ticket-card, .story-card, .output-card, .card, .product-card, .cart-panel, .payment-grid > *, .checkout-grid > * {
+  min-width: 0;
+}
+.ticket-card, .compact-list li, .ps-note, .muted, .product-title, .sku, .product-meta, .cart-item strong, .checkout-item strong {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Keep the wireframe representative without causing horizontal overflow on small screens. */
+.realistic-wireframe { overflow: hidden; width: 100%; }
+.wf-screen, .wf-shop-shell, .wf-catalogue, .wf-payment-shell, .wf-order-summary, .wf-payment-form, .wf-side-basket { min-width: 0; }
+.wf-products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.checkout-grid, .payment-grid { grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); }
+.checkout-grid > div, .payment-grid > section { min-width: 0; }
+.cart-item { grid-template-columns: 42px minmax(0, 1fr) auto; }
+.checkout-item { min-width: 0; }
+.qty-control { flex-shrink: 0; }
+
+/* Enterprise grid should scroll inside the card instead of causing page overflow. */
+.orders-card { overflow: visible; }
+.ag-theme-checkout { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+.ag-header, .ag-body-viewport { min-width: 860px; }
+.ag-row { min-width: 860px; grid-template-columns: minmax(145px, 1.2fr) 105px minmax(155px, 1.1fr) 118px 72px 95px; }
+.ag-cell { white-space: normal; }
+
+@media (max-width: 1180px) {
+  .ticket-board, .checkout-grid, .payment-grid { grid-template-columns: 1fr; }
+  .cart-panel { position: static; }
+}
+
+@media (max-width: 1040px) {
+  .toolbar { grid-template-columns: minmax(0, 1fr) minmax(150px, .65fr); }
+  .toolbar .secondary { width: 100%; }
+}
+
+@media (max-width: 820px) {
+  .login-shell { min-height: auto; grid-template-columns: 1fr; gap: 24px; padding: 26px 16px; }
+  .login-copy h1 { font-size: clamp(30px, 10vw, 44px); }
+  .login-features { grid-template-columns: 1fr 1fr; }
+  .main-layout { display: block; }
+  .sidebar { display: flex; gap: 8px; overflow-x: auto; overscroll-behavior-x: contain; padding: 10px; }
+  .nav-button { min-width: 148px; flex: 0 0 auto; }
+  .topbar-inner { align-items: stretch; flex-direction: column; }
+  .user-actions { width: 100%; align-items: stretch; }
+  .user-actions .ghost, .user-actions .secondary { flex: 1 1 auto; }
+  .content { padding: 14px 12px 42px; }
+  .board-intro { align-items: stretch; flex-direction: column; }
+  .board-intro .primary { width: 100%; }
+  .hero { padding: 15px; }
+  .card-header { flex-direction: column; align-items: stretch; }
+  .toolbar { grid-template-columns: 1fr; }
+  .form-grid, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .report-actions, .grid-toolbar { align-items: stretch; flex-direction: column; }
+  .grid-toolbar .field { width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .ticket-column header span { font-size: 14px; }
+  .realistic-wireframe { min-height: auto; padding: 8px; gap: 7px; }
+  .wf-shop-shell, .wf-payment-shell { grid-template-columns: 1fr; }
+  .wf-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wf-screen-head { height: auto; align-items: flex-start; flex-direction: column; gap: 2px; }
+  .wf-flow-note { font-size: 7px; white-space: normal; text-align: center; }
+  .cart-item { grid-template-columns: 42px minmax(0, 1fr); align-items: start; }
+  .cart-item > div:last-child { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px; text-align: left !important; }
+  .checkout-item { flex-wrap: wrap; align-items: flex-start; }
+  .checkout-item .line-thumb { flex: 0 0 42px; }
+  .inline { align-items: stretch; flex-direction: column; }
+  .inline .secondary { width: 100%; }
+  .totals div { align-items: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .login-features, .product-grid { grid-template-columns: 1fr; }
+  .product-art { height: 118px; }
+  .topbar-inner { padding: 8px 12px; }
+  .brand { max-width: 100%; }
+  .user-chip { justify-content: center; width: 100%; }
+  .user-actions { flex-direction: column; }
+  .primary, .secondary, .ghost, .danger { width: 100%; }
+  .ticket-card { padding: 10px; }
+}
