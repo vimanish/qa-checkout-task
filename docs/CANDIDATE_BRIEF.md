@@ -15,15 +15,18 @@ The shopper journey should support product discovery, basket management, checkou
 - Shoppers can search and sort the product catalogue.
 - Shoppers can add available products to the basket.
 - Shoppers can update quantities or remove items from the basket.
-- Basket quantities should respect product availability.
 - Shoppers can continue from basket to checkout.
 - Checkout should show the products being purchased and the total payable.
 - Shoppers can apply eligible promotional offers.
-- Promotional offers cannot be combined with other offers or discounts.
 - Shoppers can choose a delivery option.
-- Required delivery and payment details must be provided before placing an order.
 - Completed orders should appear in order history.
 - Order information can be exported.
+
+## Validation
+
+- Basket quantities should respect product availability.
+- Promotional offers cannot be combined with other offers or discounts.
+- Required delivery and payment details must be provided before placing an order.
 
 ## Test data
 

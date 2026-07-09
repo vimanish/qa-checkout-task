@@ -1,8 +1,8 @@
-# Checkout QA Assessment - task_17
+# Checkout QA Assessment - task_18
 
 A focused take-home assessment app using a sample online shopping journey.
 
-The app deliberately uses a familiar online-shopping flow with a separate checkout/payment step so candidates can start testing immediately without a product knowledge-transfer session. task_17 keeps the focused shopper journey and uses a less prescriptive candidate-facing ticket while preserving the private seeded-defect guide for interview evaluation. The UI is intentionally limited to a ticket brief, a shop/basket page, a checkout/payment page and an orders/export page with an enterprise-style grid.
+The app deliberately uses a familiar online-shopping flow with a separate checkout/payment step so candidates can start testing immediately without a product knowledge-transfer session. task_18 keeps the focused shopper journey, updates the ticket wireframe to resemble the actual app flow, and adds clearer Acceptance criteria, Validation and Test data headings while preserving the private seeded-defect guide for interview evaluation. The UI is intentionally limited to a ticket brief, a shop/basket page, a checkout/payment page and an orders/export page with an enterprise-style grid.
 
 ## Run locally
 

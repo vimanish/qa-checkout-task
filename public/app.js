@@ -275,40 +275,59 @@ function renderBrief() {
       </div>
       <div class="ticket-board" ${testid('ticket-board')}>
         <section class="ticket-column">
-          <header><h2>Ticket requirements</h2><span>3</span></header>
+          <header><h2>Ticket requirements</h2><span>4</span></header>
           <article class="ticket-card story-card" ${testid('ticket-story')}>
-            <div class="wireframe checkout-wireframe" aria-label="Shop and checkout wireframe">
-              <div class="wf-label">Shop & basket</div>
-              <div class="wf-search">Search products</div>
-              <div class="wf-grid"><span>Product card</span><span>Product card</span><span>Product card</span></div>
-              <div class="wf-basket"><strong>Basket</strong><small>Item line</small><small>Qty</small><small>Continue</small></div>
-              <div class="wf-arrow">↓</div>
-              <div class="wf-label">Checkout / payment</div>
-              <div class="wf-checkout"><small>Promo code</small><small>Delivery method</small><small>Address + card</small><strong>Totals</strong></div>
+            <div class="wireframe realistic-wireframe" aria-label="Shop and checkout wireframe">
+              <div class="wf-screen wf-shop-screen">
+                <div class="wf-screen-head"><strong>Shop & basket</strong><span>Search · sort · catalogue</span></div>
+                <div class="wf-shop-shell">
+                  <div class="wf-catalogue">
+                    <div class="wf-searchbar">Search products</div>
+                    <div class="wf-products">
+                      <span><i></i><b></b><em></em></span>
+                      <span><i></i><b></b><em></em></span>
+                      <span><i></i><b></b><em></em></span>
+                      <span><i></i><b></b><em></em></span>
+                    </div>
+                  </div>
+                  <div class="wf-side-basket"><strong>Basket</strong><small>Item + quantity</small><small>Item + quantity</small><button>Continue</button></div>
+                </div>
+              </div>
+              <div class="wf-flow-note">Continue to checkout</div>
+              <div class="wf-screen wf-payment-screen">
+                <div class="wf-screen-head"><strong>Checkout / payment</strong><span>Offer · delivery · payment</span></div>
+                <div class="wf-payment-shell">
+                  <div class="wf-order-summary"><strong>Basket summary</strong><small>Products being purchased</small><small>Subtotal / discount / delivery</small><b>Total payable</b></div>
+                  <div class="wf-payment-form"><small>Promo code</small><small>Delivery method</small><small>Address details</small><small>Card details</small><button>Place order</button></div>
+                </div>
+              </div>
             </div>
-            <span class="label green">Story</span>
-            <h3>As a shopper, I want to buy products online, so that I can complete an order from a basket.</h3>
+            <h3 class="ticket-section-title"><span class="title-mark green"></span>Story</h3>
+            <h4>As a shopper, I want to buy products online, so that I can complete an order from a basket.</h4>
             <p>The release includes product search, basket quantity changes, a separate checkout step for promo and delivery selection, payment, order confirmation and order history.</p>
           </article>
           <article class="ticket-card" ${testid('business-rules')}>
-            <span class="label blue">Acceptance criteria</span>
+            <h3 class="ticket-section-title"><span class="title-mark blue"></span>Acceptance criteria</h3>
             <ul class="compact-list">
               <li>Shoppers can search and sort the product catalogue.</li>
               <li>Shoppers can add available products to the basket.</li>
               <li>Shoppers can update quantities or remove items from the basket.</li>
-              <li>Basket quantities should respect product availability.</li>
               <li>Shoppers can continue from basket to checkout.</li>
               <li>Checkout should show the products being purchased and the total payable.</li>
               <li>Shoppers can apply eligible promotional offers.</li>
-              <li>Promotional offers cannot be combined with other offers or discounts.</li>
               <li>Shoppers can choose a delivery option.</li>
-              <li>Required delivery and payment details must be provided before placing an order.</li>
               <li>Completed orders should appear in order history.</li>
               <li>Order information can be exported.</li>
             </ul>
+            <h3 class="ticket-section-title validation-title"><span class="title-mark purple"></span>Validation</h3>
+            <ul class="compact-list">
+              <li>Basket quantities should respect product availability.</li>
+              <li>Promotional offers cannot be combined with other offers or discounts.</li>
+              <li>Required delivery and payment details must be provided before placing an order.</li>
+            </ul>
           </article>
           <article class="ticket-card" ${testid('test-data-card')}>
-            <span class="label amber">Test data</span>
+            <h3 class="ticket-section-title"><span class="title-mark amber"></span>Test data</h3>
             <ul class="compact-list">
               <li>Promo codes: <b>SAVE10</b>, <b>WELCOME5</b>.</li>
               <li>Accepted test card: <b>4242424242424242</b>.</li>
