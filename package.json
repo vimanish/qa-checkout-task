@@ -1,0 +1,13 @@
+{
+  "name": "task_15-checkout-sr-qa-assessment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Focused senior QA automation take-home assessment app: familiar checkout flow with calculations, payment rules and seeded defects.",
+  "scripts": {
+    "start": "node server.js",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest"
+  }
+}
