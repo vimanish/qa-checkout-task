@@ -235,7 +235,7 @@ function renderAppShell() {
         <div class="topbar-inner">
           <button class="brand" type="button" onclick="setPage('brief')" ${testid('brand-home')}>
             <span class="logo-mark">CX</span>
-            <span><strong>Checkout QA Lab</strong><small>Senior Automation Assessment</small></span>
+            <span><strong>Checkout QA Lab</strong><small>Sample online shopping journey</small></span>
           </button>
           <div class="user-actions">
             <span class="user-chip" ${testid('logged-in-user')}><i class="role-dot"></i>${escapeHtml(state.user.name)}</span>
@@ -331,6 +331,13 @@ function renderBrief() {
           <header><h2>Output</h2><span>1</span></header>
           <article class="ticket-card output-card" ${testid('candidate-output')}>
             <p>Once testing is complete, collate your feedback. During the interview, talk us through your findings, your test approach and the choices you made.</p>
+            <p>You may choose to submit your completed feedback using one of the following options:</p>
+            <ol class="submission-list">
+              <li>Private GitHub repository</li>
+              <li>ZIP file</li>
+              <li>A combination of both, if preferred</li>
+            </ol>
+            <p class="ps-note">P.S. .zip, word, Excel, PDF, and Markdown documents are acceptable.</p>
           </article>
         </section>
       </div>
