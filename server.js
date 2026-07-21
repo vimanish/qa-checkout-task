@@ -213,23 +213,6 @@ async function handleApi(req, res) {
     const user = requireAuth(req, res);
     if (!user) return;
 
-    if (pathname === '/api/brief' && req.method === 'GET') {
-      send(res, 200, {
-        title: 'Senior QA checkout assessment',
-        expectedSubmission: ['Collated feedback', 'Interview walkthrough notes'],
-        rules: [
-          'Search must match product name, SKU, brand or category.',
-          'Cart quantity must be between 1 and the available stock, with a maximum of 5 units per product.',
-          'SAVE10 gives 10% off item subtotal only, capped at £20. WELCOME5 gives £5 off item subtotal when subtotal is at least £30.',
-          'Only one promo code can be active per order. Applying a new promo should replace the previous promo, and the same promo must not be applied twice.',
-          'Standard delivery is £3.99 and free at £50+. Express delivery is always £7.99. Collection is free.',
-          'Declined test card 4000000000000002 must block checkout. Valid test card 4242424242424242 may complete checkout.',
-        ],
-      });
-      auditLog(req, 200, user.id);
-      return;
-    }
-
     if (pathname === '/api/products' && req.method === 'GET') {
       const q = String(url.searchParams.get('q') || '').trim().toLowerCase();
       const category = String(url.searchParams.get('category') || '');

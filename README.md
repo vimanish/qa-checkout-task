@@ -1,8 +1,8 @@
-# Checkout QA Assessment - task_20
+# Checkout QA Assessment - task_21
 
 A focused take-home assessment app using a sample online shopping journey.
 
-The app deliberately uses a familiar online-shopping flow with a separate checkout/payment step so candidates can start testing immediately without a product knowledge-transfer session. task_20 keeps the focused shopper journey, updates the ticket output guidance for the engineering take-home guidelines, removes the old timebox label from the login page, and preserves the private seeded-defect guide for interview evaluation. The UI is intentionally limited to a ticket brief, a shop/basket page, a checkout/payment page and an orders/export page with an enterprise-style grid.
+The app deliberately uses a familiar online-shopping flow with a separate checkout/payment step so candidates can start testing immediately without a product knowledge-transfer session. task_21 keeps the focused shopper journey and removes the ticket brief from the product UI. Candidates should receive the ticket separately from `docs/CANDIDATE_BRIEF.md`; the deployed app now behaves like a clean product under test with Shop & basket, Checkout / payment and Orders / export modules.
 
 ## Run locally
 
@@ -28,7 +28,7 @@ shopper@test.local / Automation123!
 
 The app no longer displays credentials in the UI. Share the account details with candidates separately.
 
-## Test data shown in the app
+## Test data in the candidate brief
 
 | Data | Value |
 |---|---|
@@ -54,7 +54,7 @@ docker run -p 4174:4174 checkout-sr-qa-assessment
 
 ## Candidate task shape
 
-Ask the candidate to treat this as a checkout release going to staging. The app gives them a ticket-style brief and one familiar shopper journey split across Shop & basket, Checkout / payment and Orders / export.
+Ask the candidate to treat this as a checkout release going to staging. Share the candidate brief separately, then provide the deployed app URL and credentials. The app itself contains only the product journey: Shop & basket, Checkout / payment and Orders / export.
 
 A candidate should not be expected to test every product or automate every scenario. Strong candidates will explain trade-offs.
 

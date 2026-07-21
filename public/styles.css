@@ -469,7 +469,7 @@ h3 { font-size: 14px; }
 }
 
 
-/* task_20: responsive polish / overflow hardening
+/* task_21: responsive polish / overflow hardening
    These fixes are intentionally not seeded defects. The app should not distract candidates with layout overflow issues. */
 html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 img, svg, video, canvas { max-width: 100%; }

@@ -1,6 +1,6 @@
 const state = {
   user: null,
-  page: 'brief',
+  page: 'shop',
   products: [],
   categories: [],
   cart: null,
@@ -36,9 +36,6 @@ function testid(id) {
   if (id === 'sidebar') return 'aria-label="Primary navigation"';
   if (id.startsWith('nav-')) return `data-nav="${id.replace('nav-', '')}"`;
   if (id === 'main-content') return 'id="main-content"';
-  if (id === 'brief-page') return 'data-testid="brief-page"';
-  if (id === 'start-assessment') return 'data-cy="start-assessment"';
-  if (id === 'ticket-board') return 'data-testid="ticket-board"';
   if (id.startsWith('product-')) return `data-product-id="${id.replace('product-', '')}"`;
   if (id.startsWith('add-')) return `data-cy="add-to-basket" data-product-id="${id.replace('add-', '')}"`;
   if (id === 'product-search') return 'aria-label="Search products"';
@@ -173,7 +170,7 @@ function renderLogin() {
       </section>
       <section class="login-card" ${testid('login-card')}>
         <h2>Sign in</h2>
-        <p class="muted">Use the account details provided with your assessment invite.</p>
+        <p class="muted">Use the account details provided to you.</p>
         <form id="login-form" ${testid('login-form')}>
           <label class="field">Email<input id="login-email" ${testid('login-email')} type="email" autocomplete="username" required /></label>
           <label class="field">Password<input id="login-password" ${testid('login-password')} type="password" autocomplete="current-password" required /></label>
@@ -195,7 +192,7 @@ async function loginSubmit(event) {
     const password = document.getElementById('login-password').value;
     const data = await api('/api/auth/login', { method: 'POST', body: { email, password } });
     state.user = data.user;
-    state.page = 'brief';
+    state.page = 'shop';
     await loadAll();
     render();
     toast('Signed in successfully.');
@@ -208,7 +205,7 @@ async function loginSubmit(event) {
 async function logout() {
   await api('/api/auth/logout', { method: 'POST' }).catch(() => {});
   state.user = null;
-  state.page = 'brief';
+  state.page = 'shop';
   render();
 }
 
@@ -222,7 +219,6 @@ async function resetData() {
 
 function renderAppShell() {
   const nav = [
-    ['brief', 'Ticket brief', 'Req'],
     ['shop', 'Shop & basket', state.cart?.items?.length || 0],
     ['checkout', 'Checkout / payment', 'Pay'],
     ['orders', 'Orders / export', state.orders.length],
@@ -230,9 +226,9 @@ function renderAppShell() {
   app.innerHTML = `
     <div class="app-shell">
       <header class="topbar">
-        <div class="env-strip">Staging assessment app — resettable data — no real payment</div>
+        <div class="env-strip">Staging shopping app — resettable data — no real payment</div>
         <div class="topbar-inner">
-          <button class="brand" type="button" onclick="setPage('brief')" ${testid('brand-home')}>
+          <button class="brand" type="button" onclick="setPage('shop')" ${testid('brand-home')}>
             <span class="logo-mark">CX</span>
             <span><strong>Checkout QA Lab</strong><small>Sample online shopping journey</small></span>
           </button>
@@ -254,114 +250,10 @@ function renderAppShell() {
 }
 
 function renderPage() {
-  if (state.page === 'brief') return renderBrief();
   if (state.page === 'shop') return renderShop();
   if (state.page === 'checkout') return renderCheckoutPage();
   if (state.page === 'orders') return renderOrders();
-  return renderBrief();
-}
-
-function renderBrief() {
-  return `
-    <section class="page" ${testid('brief-page')}>
-      <div class="board-intro">
-        <div>
-          <p class="eyebrow">Shopper journey ticket</p>
-          <h1>Test ticket: shopper checkout</h1>
-          <p class="muted">Read the requirement card, open the shop page, then complete the task using the provided staging app.</p>
-        </div>
-        <button class="primary" type="button" onclick="setPage('shop')" ${testid('start-assessment')}>Open shop</button>
-      </div>
-      <div class="ticket-board" ${testid('ticket-board')}>
-        <section class="ticket-column">
-          <header><h2>Ticket requirements</h2><span>4</span></header>
-          <article class="ticket-card story-card" ${testid('ticket-story')}>
-            <div class="wireframe realistic-wireframe" aria-label="Shop and checkout wireframe">
-              <div class="wf-screen wf-shop-screen">
-                <div class="wf-screen-head"><strong>Shop & basket</strong><span>Search · sort · catalogue</span></div>
-                <div class="wf-shop-shell">
-                  <div class="wf-catalogue">
-                    <div class="wf-searchbar">Search products</div>
-                    <div class="wf-products">
-                      <span><i></i><b></b><em></em></span>
-                      <span><i></i><b></b><em></em></span>
-                      <span><i></i><b></b><em></em></span>
-                      <span><i></i><b></b><em></em></span>
-                    </div>
-                  </div>
-                  <div class="wf-side-basket"><strong>Basket</strong><small>Item + quantity</small><small>Item + quantity</small><button>Continue</button></div>
-                </div>
-              </div>
-              <div class="wf-flow-note">Continue to checkout</div>
-              <div class="wf-screen wf-payment-screen">
-                <div class="wf-screen-head"><strong>Checkout / payment</strong><span>Offer · delivery · payment</span></div>
-                <div class="wf-payment-shell">
-                  <div class="wf-order-summary"><strong>Basket summary</strong><small>Products being purchased</small><small>Subtotal / discount / delivery</small><b>Total payable</b></div>
-                  <div class="wf-payment-form"><small>Promo code</small><small>Delivery method</small><small>Address details</small><small>Card details</small><button>Place order</button></div>
-                </div>
-              </div>
-            </div>
-            <h3 class="ticket-section-title"><span class="title-mark green"></span>Story</h3>
-            <h4>As a shopper, I want to buy products online, so that I can complete an order from a basket.</h4>
-            <p>The release includes product search, basket quantity changes, a separate checkout step for promo and delivery selection, payment, order confirmation and order history.</p>
-          </article>
-          <article class="ticket-card" ${testid('business-rules')}>
-            <h3 class="ticket-section-title"><span class="title-mark blue"></span>Acceptance criteria</h3>
-            <ul class="compact-list">
-              <li>Shoppers can search and sort the product catalogue.</li>
-              <li>Shoppers can add available products to the basket.</li>
-              <li>Shoppers can update quantities or remove items from the basket.</li>
-              <li>Shoppers can continue from basket to checkout.</li>
-              <li>Checkout should show the products being purchased and the total payable.</li>
-              <li>Shoppers can apply eligible promotional offers.</li>
-              <li>Shoppers can choose a delivery option.</li>
-              <li>Completed orders should appear in order history.</li>
-              <li>Order information can be exported.</li>
-            </ul>
-            <h3 class="ticket-section-title validation-title"><span class="title-mark purple"></span>Validation</h3>
-            <ul class="compact-list">
-              <li>Basket quantities should respect product availability.</li>
-              <li>Promotional offers cannot be combined with other offers or discounts.</li>
-              <li>Required delivery and payment details must be provided before placing an order.</li>
-            </ul>
-          </article>
-          <article class="ticket-card" ${testid('test-data-card')}>
-            <h3 class="ticket-section-title"><span class="title-mark amber"></span>Test data</h3>
-            <ul class="compact-list">
-              <li>Promo codes: <b>SAVE10</b>, <b>WELCOME5</b>.</li>
-              <li>Accepted test card: <b>4242424242424242</b>.</li>
-              <li>Declined test card: <b>4000000000000002</b>.</li>
-            </ul>
-          </article>
-        </section>
-        <section class="ticket-column short-column">
-          <header><h2>To test</h2><span>2</span></header>
-          <article class="ticket-card">
-            <p>Once the ticket has been read, open the shop page and begin testing.</p>
-          </article>
-          <article class="ticket-card link-card">
-            <span class="link-icon">⌁</span>
-            <button type="button" onclick="setPage('shop')" ${testid('ticket-open-link')}>Shopper journey app</button>
-            <small>localhost:4174</small>
-          </article>
-        </section>
-        <section class="ticket-column short-column">
-          <header><h2>Output</h2><span>1</span></header>
-          <article class="ticket-card output-card" ${testid('candidate-output')}>
-            <p>Once testing is complete, collate your feedback. During the interview, talk us through your findings, your test approach and the choices you made.</p>
-            <p>We are interested in your judgement, prioritisation, and ability to explain your approach. We are not expecting complete coverage or a production-ready test framework.</p>
-            <p>AI tooling is permitted. If you use AI, include a short note on where it helped, where you verified or corrected it, and what you chose not to rely on it for.</p>
-            <p>You may choose to submit your completed feedback using one of the following options:</p>
-            <ol class="submission-list">
-              <li>Private GitHub repository</li>
-              <li>ZIP file</li>
-              <li>A combination of both, if preferred</li>
-            </ol>
-            <p class="ps-note">P.S. .zip, word, excel, pdf and markdown documents are acceptable.</p>
-          </article>
-        </section>
-      </div>
-    </section>`;
+  return renderShop();
 }
 
 function renderShop() {
@@ -370,7 +262,7 @@ function renderShop() {
       <div class="hero slim">
         <p class="eyebrow">Shop & basket</p>
         <h1>Find products and build a basket.</h1>
-        <p>Use the ticket rules as your source of truth.</p>
+        <p>Browse products, build a basket and continue to checkout.</p>
       </div>
       <div class="checkout-grid">
         <div>
